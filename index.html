@@ -5,127 +5,245 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gemstars Jewelry Launch</title>
 <style>
-  * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
-  html,body{height:100%; overflow:hidden; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; text-align:center;}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
 
   /* HEADER */
-  header {margin-top:20px;}
-  header img {width:180px; display:block; margin:0 auto;}
-  #datetime {font-size:1rem; color:#ff69b4; margin-top:10px;}
+  header {
+    margin-top: 20px;
+  }
+
+  header img {
+    width: 180px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #datetime {
+    font-size: 1rem;
+    color: #ff69b4;
+    margin-top: 10px;
+  }
 
   /* MAIN */
   main {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-    justify-content:flex-start;
-    padding-top:50px;
-  }
-
-  /* FADE-IN ANIMATION */
-  @keyframes fadeIn {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    justify-content: flex-start;
+    padding-top: 50px;
+    padding-bottom: 60px; /* space for footer */
+    width: 100%;
   }
 
   h1 {
-    font-size:7rem;
-    color:#fee9f4;
-    letter-spacing:2px;
-    text-shadow:0 0 20px #ff69b4;
-    opacity:0;
-    animation: fadeIn 2s ease-in-out forwards;
+    font-size: clamp(3rem, 10vw, 7rem);
+    color: #fee9f4;
+    letter-spacing: 3px;
+    text-shadow: 0 0 25px #ff69b4, 0 0 50px rgba(255,105,180,0.6);
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* COUNTDOWN */
-  .countdown-container {display:flex; justify-content:center; gap:35px; margin:15px 0;}
-  .circle {position:relative; width:180px; height:180px;}
-  svg {transform:rotate(-90deg); position:absolute; top:0; left:0; width:180px; height:180px;}
-  circle {fill:none; stroke-width:12; stroke-linecap:round;}
-  .bg {stroke:rgba(255,255,255,0.1);}
-  .progress {stroke:#ff69b4; stroke-dasharray:440; stroke-dashoffset:440; transition:stroke-dashoffset 1s linear;}
-  .time {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;}
-  .time h2 {font-size:2.5rem; color:#fff; margin:0;}
-  .time small {font-size:1rem; color:#ff69b4;}
-
-  /* SIGNUP */
-  .signup-label {color:#ff69b4; font-size:1.2rem; text-shadow:0 0 10px #ff69b4; margin-bottom:5px;}
-  form.signup {
-    background:rgba(255,255,255,0.1);
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:40px;
-    backdrop-filter:blur(12px);
-    width:480px;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 0 25px rgba(255,105,180,0.3);
-    margin-top:10px;
-  }
-  form.signup input {
-    background:transparent; border:none; color:white; padding:10px; flex:1; outline:none; font-size:1rem;
-  }
-  form.signup button {
-    background:#ff69b4; border:none; color:white; font-weight:bold; padding:12px 25px; border-radius:30px; cursor:pointer; transition:all 0.3s ease;
-  }
-  form.signup button:hover {box-shadow:0 0 25px #ff69b4; transform:scale(1.05);}
-  #form-msg {margin-left:12px; font-size:0.9rem; color:#ff69b4;}
-
-  /* FOOTER */
-  footer {width:100%; text-align:center; font-size:0.9rem; color:#aaa; padding-bottom:10px; position:absolute; bottom:0;}
-  .footer-line {width:80%; height:2px; background:linear-gradient(90deg,transparent,#ff69b4,transparent); margin:10px auto; border-radius:2px; box-shadow:0 0 20px #ff69b4;}
-
- /* MOBILE RESPONSIVENESS */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 3rem;
-  }
-
   .countdown-container {
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
+    margin: 15px 0;
+    width: 100%;
   }
 
   .circle {
-    width: 130px;
-    height: 130px;
+    position: relative;
+    width: 160px;
+    height: 160px;
   }
 
   svg {
-    width: 130px;
-    height: 130px;
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 160px;
+  }
+
+  circle {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+  }
+
+  .bg {
+    stroke: rgba(255, 255, 255, 0.1);
+  }
+
+  .progress {
+    stroke: #ff69b4;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    transition: stroke-dashoffset 1s linear;
+  }
+
+  .time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
   }
 
   .time h2 {
-    font-size: 2rem;
+    font-size: 2.3rem;
+    color: #fff;
+    margin: 0;
   }
 
-  .signup {
+  .time small {
+    font-size: 1rem;
+    color: #ff69b4;
+  }
+
+  /* SIGNUP */
+  .signup-label {
+    color: #ff69b4;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px #ff69b4;
+    margin-bottom: 5px;
+  }
+
+  form.signup {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    backdrop-filter: blur(12px);
     width: 90%;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 480px;
     padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
+    margin-top: 10px;
+    flex-wrap: wrap;
   }
 
-  .signup input {
-    width: 100%;
-    text-align: center;
+  form.signup input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+    flex: 1;
+    outline: none;
     font-size: 1rem;
   }
 
-  .signup button {
-    width: 100%;
-    border-radius: 25px;
+  form.signup button {
+    background: #ff69b4;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
-  footer {
-    font-size: 0.8rem;
-    padding-bottom: 20px;
+  form.signup button:hover {
+    box-shadow: 0 0 25px #ff69b4;
+    transform: scale(1.05);
   }
-}
+
+  #form-msg {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ff69b4;
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    padding-bottom: 20px;
+    margin-top: auto;
+  }
+
+  .footer-line {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+    margin: 10px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 20px #ff69b4;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .circle {
+      width: 120px;
+      height: 120px;
+    }
+
+    svg {
+      width: 120px;
+      height: 120px;
+    }
+
+    .time h2 {
+      font-size: 1.8rem;
+    }
+
+    form.signup {
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+      padding: 15px;
+    }
+
+    form.signup input {
+      width: 100%;
+      text-align: center;
+    }
+
+    form.signup button {
+      width: 100%;
+      border-radius: 25px;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      padding-bottom: 25px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -141,29 +259,29 @@
   <div class="countdown-container">
     <div class="circle">
       <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress days" cx="90" cy="90" r="80"></circle>
+        <circle class="bg" cx="80" cy="80" r="70"></circle>
+        <circle class="progress days" cx="80" cy="80" r="70"></circle>
       </svg>
       <div class="time"><h2 id="days">00</h2><small>Days</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress hours" cx="90" cy="90" r="80"></circle>
+        <circle class="bg" cx="80" cy="80" r="70"></circle>
+        <circle class="progress hours" cx="80" cy="80" r="70"></circle>
       </svg>
       <div class="time"><h2 id="hours">00</h2><small>Hours</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress minutes" cx="90" cy="90" r="80"></circle>
+        <circle class="bg" cx="80" cy="80" r="70"></circle>
+        <circle class="progress minutes" cx="80" cy="80" r="70"></circle>
       </svg>
       <div class="time"><h2 id="minutes">00</h2><small>Minutes</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress seconds" cx="90" cy="90" r="80"></circle>
+        <circle class="bg" cx="80" cy="80" r="70"></circle>
+        <circle class="progress seconds" cx="80" cy="80" r="70"></circle>
       </svg>
       <div class="time"><h2 id="seconds">00</h2><small>Seconds</small></div>
     </div>
@@ -171,7 +289,6 @@
 
   <p class="signup-label">Get 50% off during launch — sign up below</p>
 
-  <!-- ✅ FORM WITH FORMSPREE -->
   <form id="notify-form" class="signup" action="https://formspree.io/f/xvgvkeap" method="POST">
     <input type="email" name="email" placeholder="Enter your email" required>
     <button type="submit">Notify Me</button>
@@ -206,6 +323,7 @@
   function updateCountdown() {
     const now = new Date().getTime();
     const diff = endDate - now;
+    if (diff <= 0) return;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
@@ -224,7 +342,7 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // ✅ Form submission handling
+  // Form submission
   document.getElementById('notify-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -258,3 +376,4 @@
 
 </body>
 </html>
+
