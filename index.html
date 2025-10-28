@@ -15,7 +15,7 @@
     align-items:center;
     text-align:center;
     overflow-x:hidden;
-    overflow-y:auto; /* ✅ allow vertical scroll so circles never clip */
+    overflow-y:auto;
   }
 
   /* HEADER */
@@ -52,8 +52,16 @@
   }
 
   .circle {position:relative; width:180px; height:180px;}
-  svg {transform:rotate(-90deg); position:absolute; top:0; left:0; width:180px; height:180px;}
-  circle {fill:none; stroke-width:12; stroke-linecap:round;}
+  svg {
+    transform:rotate(-90deg);
+    position:absolute;
+    top:0;
+    left:0;
+    width:180px;
+    height:180px;
+    overflow:visible;
+  }
+  circle {fill:none; stroke-width:12; stroke-linecap:round; vector-effect:non-scaling-stroke;}
   .bg {stroke:rgba(255,255,255,0.1);}
   .progress {stroke:#ff69b4; stroke-dasharray:440; stroke-dashoffset:440; transition:stroke-dashoffset 1s linear;}
   .time {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;}
@@ -103,34 +111,23 @@
 
   @media (max-width:768px) {
     h1 {font-size:3rem;}
-
     .countdown-container {
       gap:12px;
       transform:scale(0.7);
       transform-origin:top center;
       margin-top:10px;
     }
-
     .circle {width:120px; height:120px;}
     svg {width:120px; height:120px;}
     .time h2 {font-size:1.8rem;}
-
     form.signup {
       flex-direction:column;
       gap:10px;
       align-items:stretch;
       width:90%;
     }
-    form.signup input {
-      width:100%;
-      text-align:center;
-      font-size:1rem;
-    }
-    form.signup button {
-      width:100%;
-      border-radius:25px;
-    }
-
+    form.signup input {width:100%; text-align:center; font-size:1rem;}
+    form.signup button {width:100%; border-radius:25px;}
     footer {font-size:0.8rem; padding-bottom:20px;}
   }
 
@@ -156,30 +153,30 @@
 
   <div class="countdown-container">
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress days" cx="90" cy="90" r="80"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress days" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="days">00</h2><small>Days</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress hours" cx="90" cy="90" r="80"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress hours" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="hours">00</h2><small>Hours</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress minutes" cx="90" cy="90" r="80"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress minutes" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="minutes">00</h2><small>Minutes</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="90" cy="90" r="80"></circle>
-        <circle class="progress seconds" cx="90" cy="90" r="80"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress seconds" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="seconds">00</h2><small>Seconds</small></div>
     </div>
@@ -272,3 +269,4 @@
 </script>
 </body>
 </html>
+
