@@ -15,6 +15,7 @@
     align-items:center;
     text-align:center;
     overflow-x:hidden;
+    overflow-y:auto; /* ✅ allow vertical scroll so circles never clip */
   }
 
   /* HEADER */
@@ -30,7 +31,7 @@
     align-items:center;
     gap:20px;
     justify-content:flex-start;
-    padding-top:50px;
+    padding-top:40px;
     width:100%;
   }
 
@@ -94,26 +95,25 @@
   footer {width:100%; text-align:center; font-size:0.9rem; color:#aaa; padding-bottom:10px; margin-top:auto;}
   .footer-line {width:80%; height:2px; background:linear-gradient(90deg,transparent,#ff69b4,transparent); margin:10px auto; border-radius:2px; box-shadow:0 0 20px #ff69b4;}
 
-  /* MOBILE FIXES */
+  /* RESPONSIVE FIXES */
+  @media (max-width:900px) {
+    h1 {font-size:4.5rem;}
+    .countdown-container {gap:25px; transform:scale(0.9);}
+  }
+
   @media (max-width:768px) {
     h1 {font-size:3rem;}
 
     .countdown-container {
-      gap:15px;
-      transform:scale(0.8);
+      gap:12px;
+      transform:scale(0.7);
+      transform-origin:top center;
+      margin-top:10px;
     }
 
-    .circle {
-      width:120px;
-      height:120px;
-    }
-    svg {
-      width:120px;
-      height:120px;
-    }
-    .time h2 {
-      font-size:1.8rem;
-    }
+    .circle {width:120px; height:120px;}
+    svg {width:120px; height:120px;}
+    .time h2 {font-size:1.8rem;}
 
     form.signup {
       flex-direction:column;
@@ -136,9 +136,11 @@
 
   @media (max-width:480px) {
     .countdown-container {
-      transform:scale(0.7);
-      gap:10px;
+      transform:scale(0.6);
+      gap:8px;
     }
+    .circle {width:110px; height:110px;}
+    svg {width:110px; height:110px;}
   }
 </style>
 </head>
@@ -268,6 +270,5 @@
     }
   });
 </script>
-
 </body>
 </html>
