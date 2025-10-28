@@ -66,15 +66,16 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 25px;
     margin: 15px 0;
     width: 100%;
+    padding: 0 10px;
   }
 
   .circle {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
   }
 
   svg {
@@ -82,13 +83,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
   }
 
   circle {
     fill: none;
-    stroke-width: 12;
+    stroke-width: 10;
     stroke-linecap: round;
   }
 
@@ -112,20 +113,20 @@
   }
 
   .time h2 {
-    font-size: 2.3rem;
+    font-size: 2rem;
     color: #fff;
     margin: 0;
   }
 
   .time small {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #ff69b4;
   }
 
   /* SIGNUP */
   .signup-label {
     color: #ff69b4;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-shadow: 0 0 10px #ff69b4;
     margin-bottom: 5px;
   }
@@ -136,14 +137,14 @@
     border-radius: 40px;
     backdrop-filter: blur(12px);
     width: 90%;
-    max-width: 480px;
+    max-width: 400px;
     padding: 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
     box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
     margin-top: 10px;
-    flex-wrap: wrap;
   }
 
   form.signup input {
@@ -151,9 +152,9 @@
     border: none;
     color: white;
     padding: 10px;
-    flex: 1;
     outline: none;
     font-size: 1rem;
+    text-align: center;
   }
 
   form.signup button {
@@ -161,10 +162,11 @@
     border: none;
     color: white;
     font-weight: bold;
-    padding: 12px 25px;
+    padding: 12px;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 1rem;
   }
 
   form.signup button:hover {
@@ -177,14 +179,14 @@
     text-align: center;
     font-size: 0.9rem;
     color: #ff69b4;
-    margin-top: 8px;
+    margin-top: 5px;
   }
 
   /* FOOTER */
   footer {
     width: 100%;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #aaa;
     padding-bottom: 20px;
     margin-top: auto;
@@ -199,42 +201,48 @@
     box-shadow: 0 0 20px #ff69b4;
   }
 
-  /* MOBILE */
-  @media (max-width: 768px) {
+  /* MOBILE FINE-TUNING (iPhone 14 portrait & below) */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2.6rem;
+    }
+
+    .countdown-container {
+      gap: 18px;
+    }
+
     .circle {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
     }
 
     svg {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
     }
 
     .time h2 {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
+    }
+
+    .time small {
+      font-size: 0.8rem;
     }
 
     form.signup {
-      flex-direction: column;
-      gap: 10px;
-      align-items: stretch;
-      padding: 15px;
+      padding: 12px;
+      max-width: 320px;
+      gap: 8px;
     }
 
     form.signup input {
-      width: 100%;
-      text-align: center;
+      font-size: 0.9rem;
+      padding: 10px;
     }
 
     form.signup button {
-      width: 100%;
-      border-radius: 25px;
-    }
-
-    footer {
-      font-size: 0.8rem;
-      padding-bottom: 25px;
+      padding: 10px;
+      font-size: 0.95rem;
     }
   }
 </style>
@@ -252,29 +260,29 @@
   <div class="countdown-container">
     <div class="circle">
       <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress days" cx="80" cy="80" r="70"></circle>
+        <circle class="bg" cx="70" cy="70" r="60"></circle>
+        <circle class="progress days" cx="70" cy="70" r="60"></circle>
       </svg>
       <div class="time"><h2 id="days">00</h2><small>Days</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress hours" cx="80" cy="80" r="70"></circle>
+        <circle class="bg" cx="70" cy="70" r="60"></circle>
+        <circle class="progress hours" cx="70" cy="70" r="60"></circle>
       </svg>
       <div class="time"><h2 id="hours">00</h2><small>Hours</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress minutes" cx="80" cy="80" r="70"></circle>
+        <circle class="bg" cx="70" cy="70" r="60"></circle>
+        <circle class="progress minutes" cx="70" cy="70" r="60"></circle>
       </svg>
       <div class="time"><h2 id="minutes">00</h2><small>Minutes</small></div>
     </div>
     <div class="circle">
       <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress seconds" cx="80" cy="80" r="70"></circle>
+        <circle class="bg" cx="70" cy="70" r="60"></circle>
+        <circle class="progress seconds" cx="70" cy="70" r="60"></circle>
       </svg>
       <div class="time"><h2 id="seconds">00</h2><small>Seconds</small></div>
     </div>
@@ -369,4 +377,3 @@
 
 </body>
 </html>
-
