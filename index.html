@@ -5,246 +5,162 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gemstars Jewelry Launch</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-
-  html, body {
-    min-height: 100vh;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
+  * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
+  html,body {
+    min-height:100vh;
+    background:#000;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    overflow-x:hidden;
+    overflow-y:auto;
   }
 
   /* HEADER */
-  header {
-    margin-top: 20px;
-  }
-
-  header img {
-    width: 180px;
-    display: block;
-    margin: 0 auto;
-  }
-
-  #datetime {
-    font-size: 1rem;
-    color: #ff69b4;
-    margin-top: 10px;
-  }
+  header {margin-top:20px;}
+  header img {width:180px; display:block; margin:0 auto;}
+  #datetime {font-size:1rem; color:#ff69b4; margin-top:10px;}
 
   /* MAIN */
   main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    justify-content: flex-start;
-    padding-top: 50px;
-    padding-bottom: 60px; /* space for footer */
-    width: 100%;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    justify-content:flex-start;
+    padding-top:40px;
+    width:100%;
   }
 
-  /* FADE IN - only for the H1 */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* FADE-IN ANIMATION FOR COMING SOON */
+  @keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
   }
 
   h1 {
-    font-size: clamp(3rem, 10vw, 7rem);
-    color: #fee9f4;
-    letter-spacing: 3px;
-    /* static subtle glow kept, pulsing removed */
-    text-shadow: 0 0 12px #ff69b4;
-    opacity: 0;
-    animation: fadeInUp 1.6s ease forwards;
+    font-size:7rem;
+    color:#fee9f4;
+    letter-spacing:2px;
+    text-shadow:0 0 20px #ff69b4;
+    opacity:0;
+    animation:fadeIn 1.5s ease-out forwards;
   }
 
   /* COUNTDOWN */
   .countdown-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin: 15px 0;
-    width: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    margin:15px 0;
+    flex-wrap:nowrap; /* keep one line */
+    transform-origin:center;
   }
 
   .circle {
-    position: relative;
-    width: 160px;
-    height: 160px;
+    position:relative;
+    width:160px;
+    height:160px;
+    flex-shrink:0;
   }
 
   svg {
-    transform: rotate(-90deg);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 160px;
-    height: 160px;
+    transform:rotate(-90deg);
+    position:absolute;
+    top:0;
+    left:0;
+    width:160px;
+    height:160px;
+    overflow:visible;
   }
 
-  circle {
-    fill: none;
-    stroke-width: 12;
-    stroke-linecap: round;
-  }
-
-  .bg {
-    stroke: rgba(255, 255, 255, 0.1);
-  }
-
+  circle {fill:none; stroke-width:12; stroke-linecap:round; vector-effect:non-scaling-stroke;}
+  .bg {stroke:rgba(255,255,255,0.1);}
   .progress {
-    stroke: #ff69b4;
-    stroke-dasharray: 440;
-    stroke-dashoffset: 440;
-    transition: stroke-dashoffset 1s linear;
+    stroke:#ff69b4;
+    stroke-dasharray:440;
+    stroke-dashoffset:440;
+    transition:stroke-dashoffset 1s linear;
   }
 
-  .time {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .time h2 {
-    font-size: 2.3rem;
-    color: #fff;
-    margin: 0;
-  }
-
-  .time small {
-    font-size: 1rem;
-    color: #ff69b4;
-  }
+  .time {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;}
+  .time h2 {font-size:2.2rem; color:#fff; margin:0;}
+  .time small {font-size:1rem; color:#ff69b4;}
 
   /* SIGNUP */
   .signup-label {
-    color: #ff69b4;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px #ff69b4;
-    margin-bottom: 5px;
+    color:#ff69b4;
+    font-size:1.2rem;
+    text-shadow:0 0 10px #ff69b4;
+    margin-bottom:5px;
   }
-
   form.signup {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
-    backdrop-filter: blur(12px);
-    width: 90%;
-    max-width: 480px;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
-    margin-top: 10px;
-    flex-wrap: wrap;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:40px;
+    backdrop-filter:blur(12px);
+    width:480px;
+    max-width:90%;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 0 25px rgba(255,105,180,0.3);
+    margin-top:10px;
+    flex-wrap:wrap;
   }
-
   form.signup input {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 10px;
-    flex: 1;
-    outline: none;
-    font-size: 1rem;
+    background:transparent; border:none; color:white; padding:10px; flex:1; outline:none; font-size:1rem;
   }
-
   form.signup button {
-    background: #ff69b4;
-    border: none;
-    color: white;
-    font-weight: bold;
-    padding: 12px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background:#ff69b4; border:none; color:white; font-weight:bold; padding:12px 25px; border-radius:30px; cursor:pointer; transition:all 0.3s ease;
   }
-
-  form.signup button:hover {
-    box-shadow: 0 0 25px #ff69b4;
-    transform: scale(1.05);
-  }
-
-  #form-msg {
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #ff69b4;
-    margin-top: 8px;
-  }
+  form.signup button:hover {box-shadow:0 0 25px #ff69b4; transform:scale(1.05);}
+  #form-msg {width:100%; text-align:center; font-size:0.9rem; color:#ff69b4; margin-top:8px;}
 
   /* FOOTER */
-  footer {
-    width: 100%;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #aaa;
-    padding-bottom: 20px;
-    margin-top: auto;
+  footer {width:100%; text-align:center; font-size:0.9rem; color:#aaa; padding-bottom:10px; margin-top:auto;}
+  .footer-line {width:80%; height:2px; background:linear-gradient(90deg,transparent,#ff69b4,transparent); margin:10px auto; border-radius:2px; box-shadow:0 0 20px #ff69b4;}
+
+  /* RESPONSIVE FIXES */
+  @media (max-width:900px) {
+    h1 {font-size:4.5rem;}
+    .circle {width:130px; height:130px;}
+    svg {width:130px; height:130px;}
+    .time h2 {font-size:1.8rem;}
+    .countdown-container {gap:18px; transform:scale(0.9);}
   }
 
-  .footer-line {
-    width: 80%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff69b4, transparent);
-    margin: 10px auto;
-    border-radius: 2px;
-    box-shadow: 0 0 20px #ff69b4;
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    .circle {
-      width: 120px;
-      height: 120px;
-    }
-
-    svg {
-      width: 120px;
-      height: 120px;
-    }
-
-    .time h2 {
-      font-size: 1.8rem;
-    }
-
+  @media (max-width:768px) {
+    h1 {font-size:3rem;}
+    .circle {width:100px; height:100px;}
+    svg {width:100px; height:100px;}
+    .time h2 {font-size:1.5rem;}
+    .countdown-container {gap:14px; transform:scale(0.85);}
     form.signup {
-      flex-direction: column;
-      gap: 10px;
-      align-items: stretch;
-      padding: 15px;
+      flex-direction:column;
+      gap:10px;
+      align-items:stretch;
+      width:90%;
     }
+    form.signup input {width:100%; text-align:center; font-size:1rem;}
+    form.signup button {width:100%; border-radius:25px;}
+    footer {font-size:0.8rem; padding-bottom:20px;}
+  }
 
-    form.signup input {
-      width: 100%;
-      text-align: center;
+  @media (max-width:480px) {
+    .countdown-container {
+      gap:10px; /* more space between circles */
+      transform:scale(0.7);
     }
-
-    form.signup button {
-      width: 100%;
-      border-radius: 25px;
-    }
-
-    footer {
-      font-size: 0.8rem;
-      padding-bottom: 25px;
-    }
+    .circle {width:85px; height:85px;}
+    svg {width:85px; height:85px;}
+    .time h2 {font-size:1.2rem;}
+    .time small {font-size:0.8rem;}
   }
 </style>
 </head>
@@ -260,30 +176,30 @@
 
   <div class="countdown-container">
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress days" cx="80" cy="80" r="70"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress days" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="days">00</h2><small>Days</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress hours" cx="80" cy="80" r="70"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress hours" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="hours">00</h2><small>Hours</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress minutes" cx="80" cy="80" r="70"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress minutes" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="minutes">00</h2><small>Minutes</small></div>
     </div>
     <div class="circle">
-      <svg>
-        <circle class="bg" cx="80" cy="80" r="70"></circle>
-        <circle class="progress seconds" cx="80" cy="80" r="70"></circle>
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+        <circle class="bg" cx="100" cy="100" r="80"></circle>
+        <circle class="progress seconds" cx="100" cy="100" r="80"></circle>
       </svg>
       <div class="time"><h2 id="seconds">00</h2><small>Seconds</small></div>
     </div>
@@ -325,7 +241,6 @@
   function updateCountdown() {
     const now = new Date().getTime();
     const diff = endDate - now;
-    if (diff <= 0) return;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
@@ -344,7 +259,7 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Form submission
+  // Form submission handling
   document.getElementById('notify-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -375,7 +290,5 @@
     }
   });
 </script>
-
 </body>
 </html>
-
