@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Gemstars Jewelry</title>
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
+  html,body{height:100%; overflow:hidden; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; text-align:center;}
+
+  /* HEADER */
+  header {margin-top:20px;}
+  header img {width:180px; display:block; margin:0 auto;}
+  #datetime {font-size:1rem; color:#ff69b4; margin-top:10px;}
+
+  /* MAIN */
+  main {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:20px;
+  }
+
+  h1 {
+    font-size:6rem;
+    color:#fee9f4;
+    text-shadow:0 0 25px #ff69b4, 0 0 50px #ff69b4;
+    letter-spacing:2px;
+    animation:glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {text-shadow:0 0 15px #ff69b4, 0 0 25px #ff69b4;}
+    to {text-shadow:0 0 35px #ff69b4, 0 0 60px #ff69b4;}
+  }
+
+  p {
+    font-size:1.3rem;
+    color:#ffb6d9;
+    max-width:600px;
+    text-shadow:0 0 10px rgba(255,105,180,0.5);
+  }
+
+  .btn {
+    background:#ff69b4;
+    border:none;
+    color:white;
+    font-weight:bold;
+    padding:15px 35px;
+    border-radius:30px;
+    cursor:pointer;
+    margin-top:20px;
+    transition:all 0.3s ease;
+    font-size:1rem;
+  }
+
+  .btn:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 25px #ff69b4;
+  }
+
+  /* FOOTER */
+  footer {width:100%; text-align:center; font-size:0.9rem; color:#aaa; padding-bottom:10px; position:absolute; bottom:0;}
+  .footer-line {width:80%; height:2px; background:linear-gradient(90deg,transparent,#ff69b4,transparent); margin:10px auto; border-radius:2px; box-shadow:0 0 20px #ff69b4;}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="img/WEB.gif" alt="Gemstars Jewelry Logo">
+  <div id="datetime"></div>
+</header>
+
+<main>
+  <h1>Thank You!</h1>
+  <p>You're officially on the Gemstars early access list 💎<br>
+  We’ll send you an exclusive 50% launch offer when we go live.</p>
+  <button class="btn" onclick="window.location.href='index.html'">Back to Home</button>
+</main>
+
+<footer>
+  <div class="footer-line"></div>
+  &copy; 2025 Gemstars Jewelry. All Rights Reserved.
+</footer>
+
+<script>
+  // Live Date/Time
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById("datetime").textContent = now.toLocaleString();
+  }
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+</script>
+
+</body>
+</html>

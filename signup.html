@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gemstars Jewelry Launch</title>
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
+  html,body{height:100%; overflow:hidden; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; text-align:center;}
+
+  /* HEADER */
+  header {margin-top:20px;}
+  header img {width:180px; display:block; margin:0 auto;}
+  #datetime {font-size:1rem; color:#ff69b4; margin-top:10px;}
+
+  /* MAIN */
+  main {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    justify-content:flex-start;
+    padding-top:50px;
+  }
+
+  h1 {
+    font-size:7rem;
+    color:#fee9f4;
+    letter-spacing:2px;
+    text-shadow:0 0 20px #ff69b4;
+  }
+
+  /* COUNTDOWN */
+  .countdown-container {display:flex; justify-content:center; gap:35px; margin:15px 0;}
+  .circle {position:relative; width:180px; height:180px;}
+  svg {transform:rotate(-90deg); position:absolute; top:0; left:0; width:180px; height:180px;}
+  circle {fill:none; stroke-width:12; stroke-linecap:round;}
+  .bg {stroke:rgba(255,255,255,0.1);}
+  .progress {stroke:#ff69b4; stroke-dasharray:440; stroke-dashoffset:440; transition:stroke-dashoffset 1s linear;}
+  .time {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;}
+  .time h2 {font-size:2.5rem; color:#fff; margin:0;}
+  .time small {font-size:1rem; color:#ff69b4;}
+
+  /* SIGNUP */
+  .signup-label {color:#ff69b4; font-size:1.2rem; text-shadow:0 0 10px #ff69b4; margin-bottom:5px;}
+  form.signup {
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:40px;
+    backdrop-filter:blur(12px);
+    width:480px;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 0 25px rgba(255,105,180,0.3);
+    margin-top:10px;
+  }
+  form.signup input {
+    background:transparent; border:none; color:white; padding:10px; flex:1; outline:none; font-size:1rem;
+  }
+  form.signup button {
+    background:#ff69b4; border:none; color:white; font-weight:bold; padding:12px 25px; border-radius:30px; cursor:pointer; transition:all 0.3s ease;
+  }
+  form.signup button:hover {box-shadow:0 0 25px #ff69b4; transform:scale(1.05);}
+  #form-msg {margin-left:12px; font-size:0.9rem; color:#ff69b4;}
+
+  /* FOOTER */
+  footer {width:100%; text-align:center; font-size:0.9rem; color:#aaa; padding-bottom:10px; position:absolute; bottom:0;}
+  .footer-line {width:80%; height:2px; background:linear-gradient(90deg,transparent,#ff69b4,transparent); margin:10px auto; border-radius:2px; box-shadow:0 0 20px #ff69b4;}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="img/WEB.gif" alt="Gemstars Jewelry Logo">
+  <div id="datetime"></div>
+</header>
+
+<main>
+  <h1>COMING SOON</h1>
+
+  <div class="countdown-container">
+    <div class="circle">
+      <svg>
+        <circle class="bg" cx="90" cy="90" r="80"></circle>
+        <circle class="progress days" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <div class="time"><h2 id="days">00</h2><small>Days</small></div>
+    </div>
+    <div class="circle">
+      <svg>
+        <circle class="bg" cx="90" cy="90" r="80"></circle>
+        <circle class="progress hours" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <div class="time"><h2 id="hours">00</h2><small>Hours</small></div>
+    </div>
+    <div class="circle">
+      <svg>
+        <circle class="bg" cx="90" cy="90" r="80"></circle>
+        <circle class="progress minutes" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <div class="time"><h2 id="minutes">00</h2><small>Minutes</small></div>
+    </div>
+    <div class="circle">
+      <svg>
+        <circle class="bg" cx="90" cy="90" r="80"></circle>
+        <circle class="progress seconds" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <div class="time"><h2 id="seconds">00</h2><small>Seconds</small></div>
+    </div>
+  </div>
+
+  <p class="signup-label">Get 50% off during launch — sign up below</p>
+
+  <!-- ✅ FORM WITH FORMSPREE -->
+  <form id="notify-form" class="signup" action="https://formspree.io/f/xvgvkeap" method="POST">
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <button type="submit">Notify Me</button>
+    <div id="form-msg"></div>
+  </form>
+</main>
+
+<footer>
+  <div class="footer-line"></div>
+  &copy; 2025 Gemstars Jewelry. All Rights Reserved.
+</footer>
+
+<script>
+  // Live Date/Time
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById("datetime").textContent = now.toLocaleString();
+  }
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+
+  // Countdown logic
+  const endDate = new Date("2026-03-20T00:00:00").getTime();
+  const circles = {
+    days: document.querySelector(".days"),
+    hours: document.querySelector(".hours"),
+    minutes: document.querySelector(".minutes"),
+    seconds: document.querySelector(".seconds")
+  };
+  const totalLength = 440;
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = endDate - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+
+    circles.days.style.strokeDashoffset = totalLength - (days / 365) * totalLength;
+    circles.hours.style.strokeDashoffset = totalLength - (hours / 24) * totalLength;
+    circles.minutes.style.strokeDashoffset = totalLength - (minutes / 60) * totalLength;
+    circles.seconds.style.strokeDashoffset = totalLength - (seconds / 60) * totalLength;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // ✅ Form submission handling
+  document.getElementById('notify-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const btn = form.querySelector('button');
+    const msg = document.getElementById('form-msg');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.textContent = '';
+
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        msg.textContent = '🎉 Thank you! You’re on the list.';
+        form.reset();
+      } else {
+        msg.textContent = 'Something went wrong. Please try again.';
+      }
+    } catch (error) {
+      msg.textContent = 'Network error. Please try later.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Notify Me';
+    }
+  });
+</script>
+
+</body>
+</html>
