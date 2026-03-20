@@ -154,7 +154,7 @@
 
   @media (max-width:480px) {
     .countdown-container {
-      gap:10px; /* more space between circles */
+      gap:10px;
       transform:scale(0.7);
     }
     .circle {width:85px; height:85px;}
@@ -220,7 +220,6 @@
 </footer>
 
 <script>
-  // Live Date/Time
   function updateDateTime() {
     const now = new Date();
     document.getElementById("datetime").textContent = now.toLocaleString();
@@ -228,8 +227,9 @@
   setInterval(updateDateTime, 1000);
   updateDateTime();
 
-  // Countdown logic
-  const endDate = new Date("2026-03-20T00:00:00").getTime();
+  // ONLY CHANGE IS HERE ↓↓↓
+  const endDate = new Date("2026-07-01T00:00:00").getTime();
+
   const circles = {
     days: document.querySelector(".days"),
     hours: document.querySelector(".hours"),
@@ -259,7 +259,6 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Form submission handling
   document.getElementById('notify-form').addEventListener('submit', async function (e) {
     e.preventDefault();
     const form = e.currentTarget;
